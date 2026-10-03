@@ -2,13 +2,12 @@ package br.com.senai.teste.dto;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
-import br.com.senai.teste.model.Emprestimo;
 import java.time.LocalDate;
 
 public class EmprestimoRequest {
 
-    @NotNull(message = "O ID do aluno é obrigatório")
-    private Integer alunoId;
+    @NotNull(message = "O ID do leitor é obrigatório")
+    private Integer leitorId;
 
     @NotNull (message = "O ID do livro é obrigatório")
     private Integer livroId;
@@ -20,12 +19,12 @@ public class EmprestimoRequest {
     public EmprestimoRequest() {
     }
 
-    public Integer getAlunoId() {
-        return alunoId;
+    public Integer getLeitorId() {
+        return leitorId;
     }
 
-    public void setAlunoId(Integer alunoId) {
-        this.alunoId = alunoId;
+    public void setLeitorId(Integer leitorId) {
+        this.leitorId = leitorId;
     }
 
     public Integer getLivroId() {

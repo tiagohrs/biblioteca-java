@@ -14,11 +14,11 @@ public interface EmprestimoRepository
 
     List<Emprestimo> findByDataDevolucaoIsNull();
 
-    List<Emprestimo> findByAlunoId(Integer alunoId);
+    List<Emprestimo> findByLeitorId(Integer leitorId);
 
     List<Emprestimo> findByLivroId(Integer livroId);
 
     List<Emprestimo> findByDataPrevistaDevolucaoBeforeAndDataDevolucaoIsNull(LocalDate dataAtual);
-    List<Emprestimo> findByAlunoIdDataPrevistaDevolucaoBeforeAndDataDevolucaoIsNull(Integer alunoId, LocalDate dataAtual);
+    List<Emprestimo> findByLeitorIdDataPrevistaDevolucaoBeforeAndDataDevolucaoIsNull(Integer leitorId, LocalDate dataAtual);
 
 }   

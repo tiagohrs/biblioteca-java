@@ -1,6 +1,9 @@
 package br.com.senai.teste.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,10 +23,11 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
     private LocalDate dataEmprestimo;
     private LocalDate dataPrevistaDevolucao;
+    private static final BigDecimal MULTA_POR_DIA = new BigDecimal("2.00");
 
     @ManyToOne
-    @JoinColumn(name = "aluno_id", nullable = false)
-    private Aluno aluno;
+    @JoinColumn(name = "leitor_id", nullable = false)
+    private Leitor leitor;
 
     @ManyToOne
     @JoinColumn(name = "livro_id", nullable = false)
@@ -44,12 +48,12 @@ public class Emprestimo {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    public Leitor getLeitor() {
+        return leitor;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setLeitor(Leitor leitor) {
+        this.leitor = leitor;
     }
 
     public Livro getLivro() {
@@ -75,5 +79,43 @@ public class Emprestimo {
     public void setDataPrevistaDevolucao(LocalDate dataPrevistaDevolucao) {
         this.dataPrevistaDevolucao = dataPrevistaDevolucao;
     }
+
+    public String getSituacao() {
+        if (dataDevolucao != null) {
+            return "DEVOLVIDO";
+        }
+
+        if (dataPrevistaDevolucao == null) {
+            return "SEM_PREVISAO";
+        }
+
+        if (dataPrevistaDevolucao.isBefore(LocalDate.now())) {
+            return "ATRASADO";
+        }
+
+        return "ATIVO";
+    }
+
+    public long getDiasAtraso() {
+    if (dataPrevistaDevolucao == null) {
+        return 0;
+    }
+
+    LocalDate dataFinal;
+
+    if (dataDevolucao == null) {
+        dataFinal = LocalDate.now();
+    } else {
+        dataFinal = dataDevolucao;
+    }
+
+    if (dataFinal.isAfter(dataPrevistaDevolucao)) {
+        return ChronoUnit.DAYS.between(dataPrevistaDevolucao, dataFinal);
+    }
+
+    return 0;
+}
+
+
 
 }

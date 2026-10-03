@@ -1,6 +1,6 @@
 $kind: http-request
-name: /alunos
-url: "{{base_url}}/alunos"
+name: /leitores
+url: "{{base_url}}/leitores"
 method: POST
 body:
   type: json

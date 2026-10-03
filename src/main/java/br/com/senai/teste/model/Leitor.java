@@ -9,8 +9,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "aluno")
-public class Aluno {
+@Table(name = "leitor")
+public class Leitor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class Aluno {
     @Email(message = "O email deve ser válido")
     private String email;
 
-    public Aluno() {
+    public Leitor() {
     }
 
-    public Aluno(String nome, String email) {
+    public Leitor(String nome, String email) {
         this.nome = nome;
         this.email = email;
     }

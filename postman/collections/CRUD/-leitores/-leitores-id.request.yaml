@@ -1,6 +1,6 @@
 $kind: http-request
-name: /alunos/id
-url: "{{base_url}}/alunos/3"
+name: /leitores/id
+url: "{{base_url}}/leitores/3"
 method: PUT
 body:
   type: json

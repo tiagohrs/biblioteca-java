@@ -1,5 +1,0 @@
-$kind: http-request
-name: /alunos
-url: "{{base_url}}/alunos"
-method: GET
-order: 2000

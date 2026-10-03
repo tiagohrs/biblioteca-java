@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PatchMapping;
 
 import br.com.senai.teste.dto.EmprestimoRequest;
+import br.com.senai.teste.dto.RenovacaoRequest;
 import br.com.senai.teste.model.Emprestimo;
 import br.com.senai.teste.service.EmprestimoService;
 import jakarta.validation.Valid;
@@ -33,12 +34,12 @@ public class EmprestimoController {
     public ResponseEntity<Emprestimo> cadastrar(
             @Valid @RequestBody EmprestimoRequest dados) {
 
-        Integer alunoId = dados.getAlunoId();
+        Integer leitorId = dados.getLeitorId();
         Integer livroId = dados.getLivroId();
         LocalDate dataPrevistaDevolucao = dados.getDataPrevistaDevolucao();
 
         Optional<Emprestimo> emprestimo = emprestimoService.cadastrar(
-                alunoId,
+                leitorId,
                 livroId,
                 dataPrevistaDevolucao);
 
@@ -84,9 +85,9 @@ public class EmprestimoController {
         return ResponseEntity.ok(emprestimos);
     }
 
-    @GetMapping("/aluno/{alunoId}")
-    public ResponseEntity<List<Emprestimo>> listarPorAluno(@PathVariable Integer alunoId) {
-        List<Emprestimo> emprestimos = emprestimoService.listarPorAluno(alunoId);
+    @GetMapping("/leitor/{leitorId}")
+    public ResponseEntity<List<Emprestimo>> listarPorLeitor(@PathVariable Integer leitorId) {
+        List<Emprestimo> emprestimos = emprestimoService.listarPorLeitor(leitorId);
         return ResponseEntity.ok(emprestimos);
     }
 
@@ -102,10 +103,20 @@ public class EmprestimoController {
         return ResponseEntity.ok(emprestimos);
     }
 
-    @GetMapping("/aluno/{alunoId}/atrasados")
-    public ResponseEntity<List<Emprestimo>> listarAtrasadosPorAluno(@PathVariable Integer alunoId) {
-        List<Emprestimo> emprestimos = emprestimoService.listarAtrasadosPorAluno(alunoId);
+    @GetMapping("/leitor/{leitorId}/atrasados")
+    public ResponseEntity<List<Emprestimo>> listarAtrasadosPorLeitor(@PathVariable Integer leitorId) {
+        List<Emprestimo> emprestimos = emprestimoService.listarAtrasadosPorLeitor(leitorId);
         return ResponseEntity.ok(emprestimos);
-    }   
+    }
+
+    @PatchMapping("/{id}/renovacao")
+    public ResponseEntity<Emprestimo> renovar(@PathVariable Integer id, @Valid @RequestBody RenovacaoRequest dados) {
+
+        Optional <Emprestimo> emprestimo = emprestimoService.renovar(id, dados.getNovaDataPrevista());
+        if (emprestimo.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(emprestimo.get());
+    }
 
 }

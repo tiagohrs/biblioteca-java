@@ -15,44 +15,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
-import br.com.senai.teste.model.Aluno;
-import br.com.senai.teste.service.AlunoService;
+import br.com.senai.teste.model.Leitor;
+import br.com.senai.teste.service.LeitorService;
 
 @RestController
-@RequestMapping("/alunos")
-public class AlunoController {
+@RequestMapping("/leitores")
+public class LeitorController {
 
-    private final AlunoService alunoService;
+    private final LeitorService leitorService;
 
-    public AlunoController(AlunoService alunoService) {
-        this.alunoService = alunoService;
+    public LeitorController(LeitorService leitorService) {
+        this.leitorService = leitorService;
     }
 
     @PostMapping
-    public ResponseEntity<Aluno> cadastrar(
-            @Valid @RequestBody Aluno aluno) {
+    public ResponseEntity<Leitor> cadastrar(
+            @Valid @RequestBody Leitor leitor) {
 
-        Aluno alunoCadastrado = alunoService.cadastrar(aluno);
+        Leitor leitorCadastrado = leitorService.cadastrar(leitor);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(alunoCadastrado);
+                .body(leitorCadastrado);
     }
 
     @GetMapping
-    public ResponseEntity<List<Aluno>> listar() {
-        List<Aluno> alunos = alunoService.listar();
-        return ResponseEntity.ok(alunos);
+    public ResponseEntity<List<Leitor>> listar() {
+        List<Leitor> leitores = leitorService.listar();
+        return ResponseEntity.ok(leitores);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Aluno> buscarPorId(
+    public ResponseEntity<Leitor> buscarPorId(
             @PathVariable Integer id) {
 
-        Optional<Aluno> aluno = alunoService.buscarPorId(id);
+        Optional<Leitor> leitor = leitorService.buscarPorId(id);
 
-        if (aluno.isPresent()) {
-            return ResponseEntity.ok(aluno.get());
+        if (leitor.isPresent()) {
+            return ResponseEntity.ok(leitor.get());
         } else {
             return ResponseEntity.notFound().build();
 
@@ -61,13 +61,13 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Aluno> atualizar(
-            @PathVariable Integer id, @Valid @RequestBody Aluno novosDados) {
+    public ResponseEntity<Leitor> atualizar(
+            @PathVariable Integer id, @Valid @RequestBody Leitor novosDados) {
 
-        Optional<Aluno> alunoAtualizado = alunoService.atualizar(id, novosDados);
+        Optional<Leitor> leitorAtualizado = leitorService.atualizar(id, novosDados);
 
-        if (alunoAtualizado.isPresent()) {
-            return ResponseEntity.ok(alunoAtualizado.get());
+        if (leitorAtualizado.isPresent()) {
+            return ResponseEntity.ok(leitorAtualizado.get());
         }
 
         return ResponseEntity.notFound().build();
@@ -77,7 +77,7 @@ public class AlunoController {
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
 
         System.out.println(id);
-        boolean excluido = alunoService.excluir(id);
+        boolean excluido = leitorService.excluir(id);
 
         if (excluido) {
             return ResponseEntity.noContent().build();

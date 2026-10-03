@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Livro")
+@Table(name = "livro")
 public class Livro {
 
     @Id
