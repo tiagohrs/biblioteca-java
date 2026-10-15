@@ -98,7 +98,7 @@ public class EmprestimoService {
 
     public List<Emprestimo> listarAtrasadosPorLeitor(Integer leitorId) {
 
-        return emprestimoRepository.findByLeitorIdDataPrevistaDevolucaoBeforeAndDataDevolucaoIsNull(leitorId,
+        return emprestimoRepository.findByLeitorIdAndDataPrevistaDevolucaoBeforeAndDataDevolucaoIsNull(leitorId,
                 LocalDate.now());
     }
 
