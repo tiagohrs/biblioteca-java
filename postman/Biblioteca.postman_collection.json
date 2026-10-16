@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "aa8ffda5-a06d-4e3b-a33a-80d4e2fdf4ec",
+    "name": "Biblioteca",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58312013"
+  },
+  "item": [
+    {
+      "name": "/usuarios",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"login\": \"maria\", \"senha\": \"senai123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/usuarios",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/auth/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"login\": \"maria\", \"senha\": \"senai123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/livros",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0ZS1hcGkiLCJzdWIiOiJtYXJpYSIsImV4cCI6MTc5MjExMDM2NCwiaWF0IjoxNzkyMTA2NzY0fQ.P81GYqO2bsEMfFp-yS0VAZqDlCADsu4bn6U_a7U3IJY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/livros",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "livros"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
