@@ -23,6 +23,16 @@ public class Leitor {
     @Email(message = "O email deve ser válido")
     private String email;
 
+    private String nomeArquivoFoto;
+
+    public String getNomeArquivoFoto() {
+        return nomeArquivoFoto;
+    }
+    
+    public void setNomeArquivoFoto(String nomeArquivoFoto) {
+        this.nomeArquivoFoto = nomeArquivoFoto;
+    }
+
     public Leitor() {
     }
 
