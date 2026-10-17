@@ -25,6 +25,16 @@ public class Livro {
     @Min(value = 1, message = "O ano deve ser maior que zero")
     private int anoPublicacao;
 
+    private String nomeArquivoCapa;
+
+    public String getNomeArquivoCapa() {
+        return nomeArquivoCapa;
+    }
+
+    public void setNomeArquivoCapa(String nomeArquivoCapa) {
+        this.nomeArquivoCapa = nomeArquivoCapa;
+    }
+
     public Livro() {
     }
 

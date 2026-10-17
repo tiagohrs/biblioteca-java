@@ -3,6 +3,8 @@ package br.com.senai.teste.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -73,4 +75,18 @@ public class LivroController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/{id}/capa")
+    public ResponseEntity<Livro> enviarCapa(
+        @PathVariable Integer id,
+        @RequestParam("arquivo") MultipartFile arquivo) {
+
+    Livro livroAtualizado = livroService.salvarCapa(id, arquivo);
+
+    return ResponseEntity.ok(livroAtualizado);
+    
+    }
+
+    
+    
 }
