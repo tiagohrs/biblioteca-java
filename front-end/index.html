@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <section id="tela-login" class="login">
+    <form id="form-login" class="login-caixa">
+      <h1>Biblioteca</h1>
+      <p id="login-subtitulo" class="suave">Entre para gerenciar livros e leitores.</p>
+
+      <label for="login-usuario">Usuário</label>
+      <input id="login-usuario" name="login" type="text" autocomplete="username" required>
+
+      <label for="login-senha">Senha</label>
+      <input id="login-senha" name="senha" type="password" autocomplete="current-password" required>
+
+      <button id="login-enviar" type="submit" class="botao principal">Entrar</button>
+      <button id="login-alternar" type="button" class="botao link">Ainda não tenho usuário</button>
+    </form>
+  </section>
+
+  <!-- TELA PRINCIPAL -->
+  <div id="tela-app" hidden>
+    <header class="topo">
+      <h1>Biblioteca</h1>
+      <nav class="abas" aria-label="Seções">
+        <button type="button" class="aba" data-aba="livros" aria-selected="true">Livros</button>
+        <button type="button" class="aba" data-aba="leitores" aria-selected="false">Leitores</button>
+      </nav>
+      <button id="btn-sair" type="button" class="botao link">Sair</button>
+    </header>
+
+    <main class="conteudo">
+      <div class="barra">
+        <h2 id="titulo-lista">Livros</h2>
+        <button id="btn-novo" type="button" class="botao principal">Novo livro</button>
+      </div>
+      <div id="lista" class="grade"></div>
+      <p id="vazio" class="suave" hidden></p>
+    </main>
+  </div>
+
+  <!-- FORMULÁRIO DE CADASTRO / EDIÇÃO -->
+  <dialog id="modal">
+    <form id="form-item" method="dialog">
+      <h2 id="modal-titulo">Novo livro</h2>
+      <div id="campos"></div>
+
+      <label for="campo-imagem" id="rotulo-imagem">Capa (opcional)</label>
+      <input id="campo-imagem" name="imagem" type="file" accept="image/*">
+
+      <div class="modal-acoes">
+        <button type="button" id="btn-cancelar" class="botao secundario">Cancelar</button>
+        <button type="submit" class="botao principal">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="aviso" role="status" aria-live="polite" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
